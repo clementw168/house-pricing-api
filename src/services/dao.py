@@ -46,7 +46,7 @@ class DAO(object):
 
     def get_row(
         self, row_id: int, is_train: bool = False
-    ) -> tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[pd.Series, np.ndarray]:
         if is_train:
             return self.train_features.iloc[row_id], self.train_label.iloc[row_id]
 
