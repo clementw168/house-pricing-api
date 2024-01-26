@@ -2,6 +2,8 @@
 test.py
 test.ipynb
 
+data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
