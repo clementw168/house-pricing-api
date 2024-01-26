@@ -22,20 +22,14 @@ if __name__ == "__main__":
     model.fit(dao.train_features, dao.train_label)
 
     print(
-        "Training set: mse = {}, r2 = {}".format(
-            mean_squared_error(dao.train_label, model.predict(dao.train_features)),
-            r2_score(dao.train_label, model.predict(dao.train_features)),
-        )
+        f"Training set: mse = {mean_squared_error(dao.train_label, model.predict(dao.train_features))}, r2 = {r2_score(dao.train_label, model.predict(dao.train_features))}"
     )
 
     print(
-        "Test set: mse = {}, r2 = {}".format(
-            mean_squared_error(dao.test_label, model.predict(dao.test_features)),
-            r2_score(dao.test_label, model.predict(dao.test_features)),
-        )
+        f"Test set: mse = {mean_squared_error(dao.test_label, model.predict(dao.test_features))}, r2 = {r2_score(dao.test_label, model.predict(dao.test_features))}"
     )
 
-    print("Saving model to {}".format(MODEL_FILE))
+    print(f"Saving model to {MODEL_FILE}")
 
     os.makedirs(os.path.dirname(MODEL_FILE), exist_ok=True)
     joblib.dump(model, MODEL_FILE)
