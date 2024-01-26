@@ -1,4 +1,4 @@
-import os.path as osp
+import os
 
 import numpy as np
 import pandas as pd
@@ -10,7 +10,7 @@ from src.constants import DATA_FILE, DATA_LINK, RANDOM_STATE, SPLIT_RATIO, TARGE
 
 class DAO(object):
     def __init__(self):
-        if not osp.exists(DATA_FILE):
+        if not os.path.exists(DATA_FILE):
             self.download_data()
 
         (
@@ -21,6 +21,8 @@ class DAO(object):
         ) = self.load_data()
 
     def download_data(self) -> None:
+        os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
+
         r = requests.get(DATA_LINK)
         with open(DATA_FILE, "wb") as f:
             f.write(r.content)
@@ -44,7 +46,7 @@ class DAO(object):
 
     def get_row(
         self, row_id: int, is_train: bool = False
-    ) -> tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[pd.Series, np.ndarray]:
         if is_train:
             return self.train_features.iloc[row_id], self.train_label.iloc[row_id]
 
