@@ -7,12 +7,12 @@ app = FastAPI()
 
 
 @app.get("/")
-async def root():
+async def root() -> dict:
     return {"message": "Inference API is running"}
 
 
 @app.get("/predict/{train_or_test}/{row_id}")
-async def predict(train_or_test: TrainTest, row_id: int):
+async def predict(train_or_test: TrainTest, row_id: int) -> dict:
     is_train = train_or_test == TrainTest.TRAIN
 
     features, price = dao.get_row(row_id, is_train)
@@ -22,7 +22,7 @@ async def predict(train_or_test: TrainTest, row_id: int):
 
 
 @app.get("/row/{train_or_test}/{row_id}")
-async def row(train_or_test: TrainTest, row_id: int):
+async def row(train_or_test: TrainTest, row_id: int) -> dict:
     is_train = train_or_test == TrainTest.TRAIN
 
     features, price = dao.get_row(row_id, is_train)
