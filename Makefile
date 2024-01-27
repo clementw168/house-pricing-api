@@ -39,5 +39,8 @@ start-r: ## Start server with reload
 start: ## Start server
 	poetry run uvicorn main:app
 
+test: ## Run tests
+	poetry run pytest tests/
+
 help: ## Description of the Makefile commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-25s\033[0m %s\n", $$1, $$2}'
