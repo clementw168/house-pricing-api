@@ -16,7 +16,7 @@ description = ""
 license = "MIT"
 name = "house-pricing-api"
 readme = "README.md"
-version = "0.1.0"
+version = "1.0.0"
 
 [tool.poetry.dependencies]
 fastapi = "^0.109.0"
