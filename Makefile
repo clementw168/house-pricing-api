@@ -33,11 +33,17 @@ black: ## Run Black
 black-fix: ## Run Black with automated fix
 	poetry run black $(PYTHON_FILE_PATHS)
 
+train: ## Train model
+	poetry run python -m train
+
 start-r: ## Start server with reload
 	poetry run uvicorn main:app --reload
 
 start: ## Start server
 	poetry run uvicorn main:app
+
+test: ## Run tests
+	poetry run pytest tests/
 
 help: ## Description of the Makefile commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-25s\033[0m %s\n", $$1, $$2}'
