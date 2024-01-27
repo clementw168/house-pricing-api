@@ -45,5 +45,18 @@ start: ## Start server
 test: ## Run tests
 	poetry run pytest tests/
 
+build-image: ## Build image
+  docker build -t house-pricing-image .
+
+build-image-no-cache: ## Build image without cache
+  docker build --no-cache -t house-pricing-image .
+
+serve: ## Serve image
+  docker run -p 8000:8000 house-pricing-image
+
+serve-interactive: ## Serve image interactively
+  docker run -p 8000:8000 -it house-pricing-image bash
+
+
 help: ## Description of the Makefile commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-25s\033[0m %s\n", $$1, $$2}'
